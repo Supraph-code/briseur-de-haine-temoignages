@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="Un espace pour répondre au sondage et transmettre un témoignage ou un signalement, sans compte et sans nom.">
+  <title>BRISEUR DE HAINE — TÉMOIGNAGES</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Briseur de haine — accueil">
+      <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>BRISEUR<br>DE HAINE<span class="brand-dot">.</span></span>
+    </a>
+    <span class="header-label">VOTRE VOIX COMPTE</span>
+  </header>
+
+  <main id="main" class="wrap">
+    <section id="public-view">
+      <div class="hero">
+        <p class="eyebrow"><span class="small-line"></span> TÉMOIGNAGES & SIGNALEMENTS</p>
+        <h1>Parlez.<br><span>Sans compte.</span><br>Sans nom.</h1>
+        <p class="hero-copy">Répondez au sondage ou envoyez un témoignage / signalement. Aucune identité n’est demandée.</p>
+        <a class="hero-link" href="#message-card">Faire entendre ma voix <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="public-grid">
+        <section class="card poll-card" aria-labelledby="poll-title">
+          <div class="card-top"><p class="eyebrow">01 / LE SONDAGE</p><span class="pill">OUI OU NON</span></div>
+          <h2 id="poll-title">Vous sentez-vous représenté·e par les responsables politiques actuels ?</h2>
+          <p class="card-copy">Une question. Votre avis.</p>
+          <div class="vote-buttons">
+            <button type="button" class="vote-button" data-vote="yes"><span>Oui</span><span aria-hidden="true">↗</span></button>
+            <button type="button" class="vote-button" data-vote="no"><span>Non</span><span aria-hidden="true">↗</span></button>
+          </div>
+          <p id="vote-feedback" class="feedback" role="status" aria-live="polite"></p>
+          <div id="poll-results" class="poll-results" aria-busy="true">
+            <div class="result-row"><span>Oui</span><strong id="yes-percent">—</strong></div>
+            <progress id="yes-progress" class="yes-progress" max="100" value="0" aria-label="Pourcentage de votes Oui"></progress>
+            <div class="result-row"><span>Non</span><strong id="no-percent">—</strong></div>
+            <progress id="no-progress" class="no-progress" max="100" value="0" aria-label="Pourcentage de votes Non"></progress>
+            <p id="vote-total" class="vote-total" aria-live="polite">Chargement des résultats…</p>
+            <p id="stats-feedback" class="feedback" role="status"></p>
+            <button id="retry-stats" class="text-button" type="button" hidden>Réessayer</button>
+          </div>
+          <p class="fine-print">Un vote par navigateur. Les résultats reflètent les réponses reçues, sans valeur de sondage représentatif.</p>
+        </section>
+
+        <section id="message-card" class="card message-card" aria-labelledby="message-title">
+          <div class="card-top"><p class="eyebrow">02 / VOTRE MESSAGE</p><span class="outline-icon" aria-hidden="true">↗</span></div>
+          <h2 id="message-title">Ce que vous vivez<br>mérite d’être entendu.</h2>
+          <p class="card-copy">Partagez une expérience, signalez une situation ou exprimez-vous librement.</p>
+          <form id="message-form">
+            <fieldset class="kind-picker"><legend>Votre message est un…</legend>
+              <div class="kind-options">
+                <label><input type="radio" name="kind" value="temoignage" checked><span>Témoignage</span></label>
+                <label><input type="radio" name="kind" value="signalement"><span>Signalement</span></label>
+                <label><input type="radio" name="kind" value="autre"><span>Autre</span></label>
+              </div>
+            </fieldset>
+            <label class="field-label" for="message">Votre message</label>
+            <textarea id="message" name="message" minlength="10" maxlength="5000" rows="7" placeholder="Écrivez ici, avec vos mots…" aria-describedby="message-help message-count" required></textarea>
+            <div class="message-meta"><span id="message-help">10 à 5 000 caractères</span><span id="message-count">0 / 5 000</span></div>
+            <div class="honeypot" aria-hidden="true"><label for="website">Laissez ce champ vide</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+            <button id="send-message" class="primary-button" type="submit"><span>Envoyer anonymement</span><span aria-hidden="true">↗</span></button>
+            <p id="message-feedback" class="feedback" role="status" aria-live="polite"></p>
+            <p class="fine-print">Pour préserver votre confidentialité, évitez les informations qui permettent de vous identifier.</p>
+          </form>
+        </section>
+      </div>
+
+      <aside class="privacy" aria-labelledby="privacy-title">
+        <span class="privacy-symbol" aria-hidden="true">◈</span>
+        <div><h2 id="privacy-title">Votre parole, sans votre identité.</h2><p>Aucune identité ni adresse IP n’est enregistrée dans la base applicative. L’hébergeur peut néanmoins traiter temporairement des métadonnées techniques dans ses journaux de sécurité.</p></div>
+      </aside>
+    </section>
+
+    <section id="admin-view" hidden>
+      <div class="admin-intro"><p class="eyebrow">ESPACE ADMINISTRATEUR</p><h1>Les voix reçues<span class="brand-dot">.</span></h1></div>
+      <section id="login-panel" class="card login-card" aria-labelledby="login-title">
+        <h2 id="login-title">Connexion</h2><p class="card-copy">Accédez aux témoignages et signalements.</p>
+        <form id="login-form">
+          <label class="field-label" for="password">Mot de passe administrateur</label>
+          <input id="password" type="password" autocomplete="current-password" required>
+          <button id="login-button" class="primary-button" type="submit"><span>Se connecter</span><span aria-hidden="true">↗</span></button>
+          <p id="login-feedback" class="feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+      <div id="admin-panel" hidden>
+        <div class="admin-toolbar"><a class="text-button" href="/">Voir le site public ↗</a><button id="logout-button" class="secondary-button" type="button">Se déconnecter</button></div>
+        <div class="admin-stats" aria-label="Statistiques">
+          <div><strong id="admin-new">—</strong><span>Nouveaux messages</span></div>
+          <div><strong id="admin-total">—</strong><span>Total messages</span></div>
+          <div><strong id="admin-yes">—</strong><span>Votes Oui</span></div>
+          <div><strong id="admin-no">—</strong><span>Votes Non</span></div>
+        </div>
+        <div class="inbox-toolbar">
+          <div class="filters" role="group" aria-label="Filtrer les messages">
+            <button type="button" data-filter="all" aria-pressed="true">Tous</button>
+            <button type="button" data-filter="new" aria-pressed="false">Nouveaux</button>
+            <button type="button" data-filter="read" aria-pressed="false">Lus</button>
+            <button type="button" data-filter="archived" aria-pressed="false">Archivés</button>
+          </div>
+          <div class="export-actions"><button id="refresh-admin" class="secondary-button" type="button">Actualiser</button><button id="export-csv" class="secondary-button" type="button">Export CSV</button></div>
+        </div>
+        <p id="admin-feedback" class="feedback" role="status" aria-live="polite"></p>
+        <div id="messages" class="messages" aria-busy="false"></div>
+      </div>
+    </section>
+    <noscript><p class="card">Activez JavaScript dans votre navigateur pour répondre au sondage ou envoyer un message.</p></noscript>
+  </main>
+
+  <footer class="site-footer wrap"><span>BRISEUR DE HAINE</span><span>Une place pour chaque voix.</span></footer>
+  <dialog id="delete-dialog" class="delete-dialog" aria-labelledby="delete-title">
+    <h2 id="delete-title">Supprimer ce message ?</h2><p>Cette suppression est définitive.</p>
+    <p id="delete-reference" class="fine-print"></p>
+    <form method="dialog"><button value="cancel" class="secondary-button">Annuler</button><button value="delete" class="danger-button">Supprimer définitivement</button></form>
+  </dialog>
+</body>
+</html>
